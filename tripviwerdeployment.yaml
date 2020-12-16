@@ -18,15 +18,14 @@ spec:
         app: tripviewer
     spec:
       containers:
-      - image: registrytvw4385.azurecr.io/tripviewer:latest
-        name: tripviewer
-        ports:
-        - containerPort: 80
       - env:
         - name: USERPROFILE_API_ENDPOINT
           value: http://userprofile-service:80
         - name: TRIPS_API_ENDPOINT
           value: http://trips-service:80
+        image: registrytvw4385.azurecr.io/tripviewer:latest
+        name: tripviewer
+        ports:
         resources: {}
 status: {}
 ---
