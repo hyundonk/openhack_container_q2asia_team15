@@ -1,0 +1,11 @@
+# Create an Azure resource group
+az group create --name teamResources --location westus
+
+# list the subnet id
+az network vnet subnet list -g teamResources --vnet-name vnet
+
+# Create an AKS-managed Azure AD cluster
+az aks create -g teamResources -n myManagedCluster --enable-aad --aad-admin-group-object-ids ef03bcab-01d1-44a2-8357-f9c60c9501da --vnet-subnet-id 
+
+# Sign in to the cluster
+az aks get-credentials --resource-group teamResources --name myManagedCluster
