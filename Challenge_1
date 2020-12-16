@@ -1,0 +1,25 @@
+# Mapping Docker File
+Dockerfile_0 - Trip Insights - User Profile (Java) API
+Dockerfile 1 - TripInsights - TripViewer Site
+Dockerfile 2 - Trip Insights - User Profile API
+Dockerfile 3 - Trip Insights - POI (Points Of Interest) API
+Dockerfile 4 - Trip Insights - Trips API
+
+# Challenge 1:
+POI and SQL Server
+
+# Building the SQL server
+sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Qweasdzxc123" -p 1433:1433 --name sql1 -h sql1 -d mcr.microsoft.com/mssql/server:2017-latest
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "Qweasdzxc123"
+docker run --network host -e SQLFQDN=172.17.0.2 -e SQLUSER=SA -e SQLPASS=Qweasdzxc123 -e SQLDB=mydrivingDB openhack/data-load:v1
+docker run -d -p 8080:80 --name poi -e "SQL_USER=SA" -e "SQL_PASSWORD=Qweasdzxc123" -e "SQL_SERVER=172.17.0.2" -e "ASPNETCORE_ENVIRONMENT=Local" tripinsights/poi:1.0
+
+# Useful command
+Docker network list
+Docker network inspect x
+Docker exec -it x
+
+# Push to registry
+az acr build --image tripinsights/trips:v1 \
+  --registry registrytvw4385 \
+  --file Dockerfile .
