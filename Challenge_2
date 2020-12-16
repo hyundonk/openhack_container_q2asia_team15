@@ -6,3 +6,4 @@ kubectl apply -f poideployment.yaml
 kubectl apply -f tripsdeployment.yaml
 kubectl apply -f userjavadeployment.yaml
 kubectl apply -f userprofiledeployment.yaml
+kubectl apply -f tripviewerdeployment.yaml
