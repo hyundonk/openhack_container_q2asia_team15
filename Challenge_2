@@ -1,0 +1,15 @@
+## Create Config Map 
+kubectl create configmap trip-config --from-literal=SQL_USER=sqladmintVw4385 --from-literal=SQL_PASSWORD=aY9zn8Sh3 --from-literal=SQL_SERVER=sqlservertvw4385.database.windows.net --from-literal=ASPNETCORE_ENVIRONMENT=Production --from-literal=SQL_DBNAME=mydrivingDB
+
+## Create pods
+kubectl apply -f poideployment.yaml
+kubectl apply -f tripsdeployment.yaml
+kubectl apply -f userjavadeployment.yaml
+kubectl apply -f userprofiledeployment.yaml
+
+## Expose service
+kubectl expose pod tripviewer --type=LoadBalancer --name=tripviewer-service
+kubectl expose pod poi --type=LoadBalancer --name=poi-service
+kubectl expose pod trips --type=LoadBalancer --name=trips-service
+kubectl expose pod user-java --type=LoadBalancer --name=userjava-service
+kubectl expose pod userprofile --type=LoadBalancer --name=userprofile-service
