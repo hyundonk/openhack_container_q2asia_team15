@@ -1,17 +1,40 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: trips
+  creationTimestamp: null
   labels:
-    run: trips
+    app: trips
+  name: trips
 spec:
-  containers:
-    - name: trips
-      image: registrytvw4385.azurecr.io/tripinsights/trips:v1
-      ports:
-      - containerPort: 80
-      envFrom:
-      - configMapRef:
-          name: trip-config
-  restartPolicy: Never
-
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trips
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: trips
+    spec:
+      containers:
+      - image: registrytvw4385.azurecr.io/tripinsights/trips:v1
+        name: trips
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: trip-config
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trips-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: trips
