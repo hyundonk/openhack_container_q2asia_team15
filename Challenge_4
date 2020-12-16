@@ -1,4 +1,5 @@
 # Deploy Ingress Controller
+kubectl -f tripinsight-ingress.yaml
 
 # Integrate with Key vault
 
