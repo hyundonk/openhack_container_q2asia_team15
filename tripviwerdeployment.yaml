@@ -1,0 +1,171 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-12-15T07:43:39Z"
+  labels:
+    run: tripviewer
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:run: {}
+      f:spec:
+        f:containers:
+          k:{"name":"tripviewer"}:
+            .: {}
+            f:env:
+              .: {}
+              k:{"name":"TRIPS_API_ENDPOINT"}:
+                .: {}
+                f:name: {}
+                f:value: {}
+              k:{"name":"USERPROFILE_API_ENDPOINT"}:
+                .: {}
+                f:name: {}
+                f:value: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:ports:
+              .: {}
+              k:{"containerPort":80,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:protocol: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kubectl-run
+    operation: Update
+    time: "2020-12-15T07:43:39Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.244.0.9"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2020-12-15T07:43:40Z"
+  name: tripviewer
+  namespace: default
+  resourceVersion: "20493"
+  selfLink: /api/v1/namespaces/default/pods/tripviewer
+  uid: 68cd03d2-bb48-4a3e-949f-52397054682c
+spec:
+  containers:
+  - env:
+    - name: USERPROFILE_API_ENDPOINT
+      value: http://userprofile-service:80
+    - name: TRIPS_API_ENDPOINT
+      value: http://trips-service:80
+    image: registrytvw4385.azurecr.io/tripviewer:latest
+    imagePullPolicy: Always
+    name: tripviewer
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-qdd8r
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-nodepool1-32663449-vmss000000
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-qdd8r
+    secret:
+      defaultMode: 420
+      secretName: default-token-qdd8r
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-12-15T07:43:39Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-12-15T07:43:40Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-12-15T07:43:40Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2020-12-15T07:43:39Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://134bca294dd43aca74fb204f21d24d8e18cffd19f4f753884517e02ff7a2cd59
+    image: registrytvw4385.azurecr.io/tripviewer:latest
+    imageID: docker-pullable://registrytvw4385.azurecr.io/tripviewer@sha256:2163bf00636fe2b45147417194a5b0a4313265436be7091927691135a9f57a60
+    lastState: {}
+    name: tripviewer
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2020-12-15T07:43:40Z"
+  hostIP: 10.240.0.4
+  phase: Running
+  podIP: 10.244.0.9
+  podIPs:
+  - ip: 10.244.0.9
+  qosClass: BestEffort
+  startTime: "2020-12-15T07:43:39Z"

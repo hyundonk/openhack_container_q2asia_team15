@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: userprofile
+  labels:
+    run: userprofile
+spec:
+  containers:
+    - name: userprofile
+      image: registrytvw4385.azurecr.io/tripinsights/userprofile:latest
+      ports:
+      - containerPort: 80
+      envFrom:
+      - configMapRef:
+          name: trip-config
+  restartPolicy: Never
+

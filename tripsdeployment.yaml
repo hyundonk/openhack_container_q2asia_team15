@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: trips
+  labels:
+    run: trips
+spec:
+  containers:
+    - name: trips
+      image: registrytvw4385.azurecr.io/tripinsights/trips:v1
+      ports:
+      - containerPort: 80
+      envFrom:
+      - configMapRef:
+          name: trip-config
+  restartPolicy: Never
+

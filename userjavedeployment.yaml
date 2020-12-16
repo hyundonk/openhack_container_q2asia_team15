@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: user-java
+  labels:
+    run: user-java
+spec:
+  containers:
+    - name: user-java
+      image: registrytvw4385.azurecr.io/tripinsights/user-java:1.0
+      ports:
+      - containerPort: 80
+      envFrom:
+      - configMapRef:
+          name: trip-config
+  restartPolicy: Never
+
