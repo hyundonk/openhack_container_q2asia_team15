@@ -18,4 +18,6 @@ az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get --spn $AZURE_CLIE
 az keyvault set-policy -n $KEYVAULT_NAME --secret-permissions get --spn $AZURE_CLIENT_ID
 az keyvault set-policy -n $KEYVAULT_NAME --certificate-permissions get --spn $AZURE_CLIENT_ID
 
+k apply -f SecretProviderClass.yaml
+
 # Seperate Name space
