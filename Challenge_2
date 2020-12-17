@@ -1,5 +1,5 @@
 ## Create Config Map 
-kubectl create configmap trip-config --from-literal=SQL_USER=sqladmintVw4385 --from-literal=SQL_PASSWORD=aY9zn8Sh3 --from-literal=SQL_SERVER=sqlservertvw4385.database.windows.net --from-literal=ASPNETCORE_ENVIRONMENT=Production --from-literal=SQL_DBNAME=mydrivingDB
+kubectl create configmap trip-config --from-literal=SQL_USER=sqladmintVw4385 --from-literal=SQL_SERVER=sqlservertvw4385.database.windows.net --from-literal=ASPNETCORE_ENVIRONMENT=Production --from-literal=SQL_DBNAME=mydrivingDB
 
 ## Create pods & services
 kubectl apply -f poideployment.yaml
