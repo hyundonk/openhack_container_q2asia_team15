@@ -20,6 +20,12 @@ spec:
       containers:
       - image: registrytvw4385.azurecr.io/tripinsights/userprofile:latest
         name: userprofile
+        env:
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tripinsightsecret
+              key: SQL-PASSWORD
         ports:
         - containerPort: 80
         envFrom:
